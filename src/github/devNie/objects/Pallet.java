@@ -5,6 +5,11 @@ import github.devNie.constants.Constants.COORDS;
 
 public class Pallet implements Collider {
     private int pos = 0;
+    int[] realOffset = new int[] {0,0};
+
+    public void setRealOffset(int[] newOffset) {
+        realOffset = newOffset;
+    }
 
     public int getPos() {
         return pos;
@@ -17,8 +22,10 @@ public class Pallet implements Collider {
     }
 
     @Override
-    public int[] getCollisionRegion(int[] realOffset) {
-        return (new int[]{PALLET.WIDTH.getValue() - realOffset[COORDS.X.getValue()],
-                PALLET.HEIGHT.getValue() - realOffset[COORDS.Y.getValue()]});
+    public int[][] getCollisionRegion() {
+        return (new int[][]{
+                {realOffset[COORDS.X.getValue()], realOffset[COORDS.X.getValue()]+PALLET.WIDTH.getValue()-1},
+                {realOffset[COORDS.Y.getValue()], realOffset[COORDS.Y.getValue()]+PALLET.HEIGHT.getValue()-1}
+        });
     }
 }

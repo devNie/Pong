@@ -51,4 +51,20 @@ public class Constants {
 
         public int getValue(){return i;}
     }
+
+    public enum DIRS {
+        UP(1),
+        DOWN(-1),
+        LEFT(-1),
+        RIGHT(1),
+        X(0),
+        Y(1);
+
+        private final int i;
+        DIRS(int i){
+            this.i = i;
+        }
+
+        public int getValue(){return i;}
+    }
 }

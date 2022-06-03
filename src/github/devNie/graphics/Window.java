@@ -23,6 +23,9 @@ public class Window {
         window.setVisible(true);
     }
 
+    public static JFrame getFrame() {
+        return window;
+    }
 
     private static void newButton(JPanel menu, GridBagConstraints gbc, JButton button) {
         button.setFont(new Font("Arial", Font.BOLD, 20));
@@ -83,6 +86,13 @@ public class Window {
 
         JButton start = new JButton("Start");
         newButton(menu, gbc, start);
+
+        // add separator
+        gbc.insets.top = 25;
+        JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+        separator.setForeground(Color.DARK_GRAY);
+        separator.setBackground(Color.DARK_GRAY);
+        menu.add(separator, gbc);
 
         JButton about = new JButton("About");
         newButton(menu, gbc, about);

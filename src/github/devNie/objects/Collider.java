@@ -1,6 +1,6 @@
 package github.devNie.objects;
 
 public interface Collider {
-    default void collide() { }
-    int[] getCollisionRegion(int[] realOffset);
+    default boolean collide(Collider tgt){return false;}
+    default int[][] getCollisionRegion() {return new int[0][];}
 }
