@@ -1,6 +1,7 @@
 package github.devNie.graphics;
 
 import javax.swing.*;
+
 import github.devNie.constants.Constants.GAME;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,7 +28,7 @@ public class Window {
         return window;
     }
 
-    private static void newButton(JPanel menu, GridBagConstraints gbc, JButton button) {
+    private static void newButton(JPanel panel, GridBagConstraints gbc, JButton button) {
         button.setFont(new Font("Arial", Font.BOLD, 20));
         button.setSize(100,20);
         button.setBorderPainted(false);
@@ -60,7 +61,7 @@ public class Window {
             }
         });
 
-        menu.add(button, gbc);
+        panel.add(button, gbc);
     }
 
 
@@ -96,6 +97,12 @@ public class Window {
 
         JButton about = new JButton("About");
         newButton(menu, gbc, about);
+        about.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAbout();
+            }
+        });
 
 
         window.add(menu);
@@ -104,6 +111,8 @@ public class Window {
     }
 
     public static void setAbout() {
+        window.getContentPane().removeAll();
+
         JPanel about = new JPanel();
         about.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -111,6 +120,37 @@ public class Window {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(50,0,0,0);
 
+
+        JLabel aboutText = new JLabel();
+        aboutText.setFont(new Font("Arial",Font.PLAIN,20));
+        aboutText.setText("<html>This project is an improvement to my previous pong style game project.<br>" +
+                "It incorporates, to my reckoning, only Swing.<br><br>" +
+                "Project by devNie</html>");
+
+        about.add(aboutText, gbc);
+
+
+        gbc.insets.top = 25;
+        JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+        separator.setForeground(Color.DARK_GRAY);
+        separator.setBackground(Color.DARK_GRAY);
+
+        about.add(separator, gbc);
+
+
+        JButton back = new JButton("Back");
+        newButton(about, gbc, back);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setMenu();
+            }
+        });
+
+
+        window.add(about);
+        window.pack();
+        window.repaint();
     }
 
 }
